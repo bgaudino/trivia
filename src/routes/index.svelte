@@ -1,3 +1,8 @@
+<svelte:head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Lexend&family=RocknRoll+One&display=swap" rel="stylesheet">	
+</svelte:head>
+
 <script>
 import { current_component } from "svelte/internal";
 
