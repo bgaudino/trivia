@@ -139,7 +139,7 @@ import { current_component } from "svelte/internal";
 <div id="main">
     <h1>Trivia</h1>
     {#if !state.started}
-        <h2>Options</h2>
+        <div class="label">Options</div>
         <div class="label">Category</div>
         <select bind:value={state.category}>
             {#each options.categories as category}
@@ -195,6 +195,7 @@ import { current_component } from "svelte/internal";
 
 <style>
     :global(body) {
+        font-family: 'RocknRoll One', sans-serif;        
         color: #f5f6f7;
         background-color: #0a0a23;
         display: grid;
