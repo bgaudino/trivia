@@ -29,7 +29,7 @@ import { current_component } from "svelte/internal";
         nums: [],
     };
 
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 20; i++) {
         options.nums.push(i);
     }
 
@@ -53,7 +53,7 @@ import { current_component } from "svelte/internal";
     $: pct = Math.round((state.correct / state.problems) * 100);
 
     async function getQuestions() {
-        const url = `https://opentdb.com/api.php?amount=${options.numQuestions}&category=${state.category}&difficulty=${state.difficulty}&type=multiple`;
+        const url = `https://opentdb.com/api.php?amount=${options.numQuestions}&category=${state.category}&difficulty=${state.difficulty}`;
         const res = await fetch(url);
         const data = await res.json();
         const questions = data.results;
@@ -65,8 +65,13 @@ import { current_component } from "svelte/internal";
         state.nextQuestion = false;
         state.currentQuestion = 0;
         state.questions = data.results;
-        console.log(data.results);
-        return state.questions;
+        if (!data.results.length) {
+          options.numQuestions--;
+          state.questions = getQuestions();
+        } else {
+          console.log(data.results);
+          return state.questions;
+        }
     }
     
     function shuffleArray(array) {
